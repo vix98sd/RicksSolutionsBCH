@@ -1,7 +1,17 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 
-// const mysql = require('./middleware/database')
+const mysql = require('./middleware/database')
+const pool = mysql.getPool()
+// pool.getConnection((error, connection) => {
+//     if (error) throw error 
+//     const sql = 'INSERT INTO dummytable (numbers) VALUES(1)'
+//     if (error) throw error
+//     connection.query(sql, (error, result) => {
+//         if (error) throw error
+//         console.log(result)
+//     })
+// })
 
 // app init
 const app = express()
@@ -16,9 +26,19 @@ app.use('/', express.static(__dirname + '/src'))
 
 // routers
 const indexRouter = require('./routers/index')
+const page1Router = require('./routers/page1')
+const page2Router = require('./routers/page2')
+const page3Router = require('./routers/page3')
+const page4Router = require('./routers/page4')
+const page5Router = require('./routers/page5')
 
 // usage of routers
 app.use(indexRouter)
+app.use(page1Router)
+app.use(page2Router)
+app.use(page3Router)
+app.use(page4Router)
+app.use(page5Router)
 
 // server run
 app.listen(port, () => {
