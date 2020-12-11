@@ -1,7 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 
-const mysql = require('./middleware/database')
+// const mysql = require('./middleware/database')
 
 const app = express()
 const port = process.env.PORT || 3000
