@@ -3,9 +3,21 @@ const exphbs = require('express-handlebars')
 
 // const mysql = require('./middleware/database')
 
+// app init
 const app = express()
 const port = process.env.PORT || 3000
 
+// setting hbs up
+app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'main' }))
+app.set('view engine', 'hbs')
+
+// routers
+const indexRouter = require('./routers/index')
+
+// usage of routers
+app.use(indexRouter)
+
+// server run
 app.listen(port, () => {
     process.stdout.write("\u001b[2J\u001b[0;0H");
     const currentdate = new Date();
