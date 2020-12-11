@@ -11,6 +11,9 @@ const port = process.env.PORT || 3000
 app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'main' }))
 app.set('view engine', 'hbs')
 
+// static folder for assets
+app.use('/', express.static(__dirname + '/src'))
+
 // routers
 const indexRouter = require('./routers/index')
 
