@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid text-white text-center mb-0" style="background-image: url(images/stars.jpg);">
+<div class="jumbotron jumbotron-fluid text-white text-center mb-0" style="background-image: url(/images/stars.jpg);">
     <div class="container"></div>
 </div>
 
@@ -11,11 +11,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-9 mt-5">
-            <form>
+            <form action="/users" method="POST">
                 <p class="text-center my-5"><i class="fa fa-users fa-5x"></i><br><br>If you participate in some of events, after the event organizer will email you with your unique code.<br>You can redeem your code here.</p>
                 <div class="mb-3 mt-5">
                     <h3>Redeem code:</h3>
-                    <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" class="form-control" id="exampleInputEmail1">
+                    <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" class="form-control" id="redeem_code" name="redeem_code">
                 </div>
                 <button type="submit" class="btn btn-info">Submit</button>
             </form>
@@ -32,14 +32,14 @@
                 <h3>Events</h3>
                 <ph4 class="display-4"><i class="fa fa-users" aria-hidden="true"></i> 3</h4>
                 <p class="lead">
-                    <a class="btn btn-warning btn-sm border mt-2" href="Jumbo action link" role="button">Create new</a>
+                    <a class="btn btn-warning btn-sm border-white text-white mt-2" href="Jumbo action link" role="button">Create new</a>
                 </p>
             </div>
             <div class="jumbotron bg-success pt-3 pb-2 text-white text-center mt-3 mb-3">
                 <h3>Awards</h3>
                 <h4 class="display-4"><i class="fa fa-trophy" aria-hidden="true"></i> 4</h4>
                 <p class="lead">
-                    <a class="btn btn-success btn-sm border" href="Jumbo action link" role="button">View</a>
+                    <a class="btn btn-success btn-sm border-white" href="Jumbo action link" role="button">View</a>
                 </p>
             </div>
         </div>
