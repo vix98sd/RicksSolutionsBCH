@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
         if (error) throw error
         connection.query(sql, (error, result) => {
             if (error) throw error
+            res.send(result)
         })
     })
 })
