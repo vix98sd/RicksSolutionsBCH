@@ -61,7 +61,6 @@ router.get('/events/new', (req, res) => {
 
 router.post('/events/new', dateFormatter, (req, res) => {
     const body = req.body
-
     pool.getConnection((error, connection) => {
         if (error) throw error
         const sql = `INSERT INTO events (title, image_url, points, date, time, location, description, visitors) VALUES (
