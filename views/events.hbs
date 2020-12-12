@@ -1,0 +1,42 @@
+<div class="jumbotron jumbotron-fluid text-white text-center" style="background-image: url(/src/images/stars.jpg);">
+            <div class="container">
+                <h1 class="display-4">Events</h1>
+                <p class="lead">Participate in events, and make the earth better place for living!</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="text-center mt-5 mb-4">
+                <h3>Find event and earn points!</h3>
+            </div>
+  
+            <div class="row">
+                {{#each event}}
+                <div class="col-12 col-md-4 mt-3">
+                    <div class="card text-center">
+                        <img class="card-img-top d-none d-md-block" src="/images/{{this.url}}" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">{{this.name}}</h4>
+                            <p class="card-text">{{this.description}}</p>
+                        </div>
+                        <div class="card-footer text-muted bg-white">
+                            <div class="row">
+                                <div class="col-6">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i> {{this.date}}
+                                </div>
+                                <div class="col-6">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> {{this.time}}
+                                </div>
+                           </div>
+                        </div>
+                        <div class="card-footer text-muted bg-white">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> {{this.place}}
+                        </div>
+                        <div class=" text-muted bg-white px-0 py-0">
+                            <button class="btn btn-block btn-primary py-2" type="button">Sign in for event</button>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                
+            </div>
+        </div>
