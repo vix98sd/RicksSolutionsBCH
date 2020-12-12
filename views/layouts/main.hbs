@@ -36,7 +36,7 @@
             -moz-appearance: textfield;
         }
 
-        .jumbotron{
+        .jumbotron {
             border-radius: 0 !important;
         }
     </style>
@@ -44,61 +44,65 @@
 </head>
 
 <body>
-    
-        
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark pt-0 pb-0">
-            <div class="container">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark pt-0 pb-0">
+        <div class="container">
             <a class="navbar-brand" style="color: #adff2f; font-weight: bold;" href="/">EcoRick</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-1 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/events">Events</a>
+                        <a class="nav-link" href="/events?username={{user.username}}&points={{user.points}}">Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Earn points</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/coupons">Spend points</a>
+                        <a class="nav-link" href="/coupons?username={{user.username}}&points={{user.points}}">Spend
+                            points</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recycle_machine_simulator">RMS</a>
+                        <a class="nav-link"
+                            href="/recycle_machine_simulator?username={{user.username}}&points={{user.points}}">RMS</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/user"><i class="fa fa-user" aria-hidden="true"></i> Profile </i></a>
+                        <a class="nav-link" href="/user?username={{user.username}}&points={{user.points}}"><i
+                                class="fa fa-user" aria-hidden="true"></i> {{user.username}} : {{user.points}}
+                            points</i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-user-times" aria-hidden="true"></i> Logout</a>
+                        <a class="nav-link" href="/"><i class="fa fa-user-times" aria-hidden="true"></i> Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
-        </nav>
+    </nav>
 
-        <div>
-            <div class="jumbotron jumbotron-fluid text-white text-center mb-0" style="background-image: url(/images/stars.jpg); background-size: cover;">
-            {{{body}}}
-        </div>
+    <div class="jumbotron jumbotron-fluid text-white text-center mb-0"
+        style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/images/bck.png); background-position: center; background-size: cover;">
+        {{{body}}}
+    </div>
 
-
+    <div class="sticky-bottom">
         <div class="jumbotron bg-dark text-white text-center pt-4 pb-4 mb-0">
             <p class="lead">Join our newsletter, and stay up-to-date with new actions!</p>
             <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 mx-auto">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Your e-mail" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control" placeholder="Your e-mail" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                    <span class="input-group-text bg-primary text-white" id="basic-addon2">Join Now</span>
+                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Join Now</span>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="bg-secondary py-3">
-            
+        <footer class="footer bg-secondary py-3">
+
             <ul class="nav text-white text-center justify-content-center flex-column flex-sm-row">
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">FAQ</a>
@@ -114,11 +118,13 @@
                 </li>
             </ul>
         </footer>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    {{!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    {{!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"

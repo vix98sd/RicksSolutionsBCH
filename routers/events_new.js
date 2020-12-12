@@ -56,14 +56,15 @@ function generateCode() {
 }
 
 router.get('/events/new', (req, res) => {
-    res.render('events_new')
+    var user = { username: req.query.username, points: req.query.points }
+    res.render('events_new', {user})
 })
 
 router.post('/events/new', dateFormatter, (req, res) => {
     const body = req.body
     pool.getConnection((error, connection) => {
         if (error) throw error
-        const sql = `INSERT INTO events (title, image_url, points, date, time, location, description, visitors) VALUES (
+        var sql = `INSERT INTO events (title, image_url, points, date, time, location, description, visitors) VALUES (
             '${body.title}',
             '${body.image_url}',
             ${body.points},
@@ -76,19 +77,20 @@ router.post('/events/new', dateFormatter, (req, res) => {
         if (error) throw error
         connection.query(sql, (error, result) => {
             if (error) throw error
-            const innerSql = `INSERT INTO redeem_codes (event, code, points) VALUES `
+            sql = `INSERT INTO redeem_codes (event, code, points) VALUES `
             var data = []
-            for (let i = 0; i < body.visitors.length; i++) {
+            for (let i = 0; i < body.visitors; i++) {
                 data[i] = generateCode()
-                innerSql += `(${body.title}, ${data[i]}, ${body.points})`
-                if (i != body.visitors.length - 1) {
-                    innerSql += `, `
+                sql += `('${body.title}', '${data[i]}', '${body.points}')`
+                if (i != body.visitors - 1) {
+                    sql += `, `
                 }
-                innerSql += `;`
             }
-            connection.query(innerSql, (error, result) => {
+            sql += `;`
+            connection.query(sql, (error, result) => {
                 if (error) throw error
-                res.render('event_created', { event: body.title, data, points: body.points })
+                var user = { username: req.query.username, points: req.query.points }
+                res.render('event_created', { event: body.title, data, points: body.points, user })
             })
         })
     })

@@ -16,7 +16,8 @@ router.get('/coupons', (req, res) => {
         if (error) throw error
         connection.query(sql, (error, result) => {
             if (error) throw error
-            res.render('coupons', {coupon: result})
+            var user = { username: req.query.username, points: req.query.points }
+            res.render('coupons', {coupon: result, user})
         })
     })
 })

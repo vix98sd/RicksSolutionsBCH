@@ -1,6 +1,6 @@
 <div class="container">
     <div class="border rounded my-2 p-2" style="border-color: #adff2f !important;">
-        <form action="/events/new" method="POST">
+        <form action="/events/new?username={{user.username}}&points={{user.points}}" method="POST">
             <div class="form-row">
                 <div class="col form-group">
                     <label for="title">Title</label>
