@@ -27,7 +27,7 @@ app.use('/', express.static(__dirname + '/src'))
 
 // routers
 const indexRouter = require('./routers/index')
-const page1Router = require('./routers/page1')
+const eventsRouter = require('./routers/events')
 const page2Router = require('./routers/page2')
 const page3Router = require('./routers/page3')
 const page4Router = require('./routers/page4')
@@ -35,7 +35,7 @@ const page5Router = require('./routers/page5')
 
 // usage of routers
 app.use(indexRouter)
-app.use(page1Router)
+app.use(eventsRouter)
 app.use(page2Router)
 app.use(page3Router)
 app.use(page4Router)
