@@ -5,13 +5,29 @@ const pool = mysql.getPool()
 
 const router = new express.Router()
 
+router.get('/db', (req, res) => {
+    pool.getConnection((error, connection) => {
+        if (error) throw error
+        const sql = `SHOW TABLES`
+        if (error) throw error
+        connection.query(sql, (error, result) => {
+            if (error) throw error
+            var html = "Select table below:<br>"
+            result.forEach(element => {
+                var table = element.Tables_in_ricks_solutions
+                html += `<a href="/db/${table}">${table}</a><br>`
+            });
+            res.send(html)
+        })
+    })
+})
+
 router.get('/db/:name', (req, res) => {
     pool.getConnection((error, connection) => {
         if (error) throw error
         const sql = `DESCRIBE ${req.params.name}`
-        if (error) throw error
         connection.query(sql, (error, result) => {
-            if (error) throw error
+            if (error) return res.redirect('/db')
             res.send(`<pre>${JSON.stringify(result, null, "  ")}</pre>`)
         })
     })
