@@ -19,11 +19,19 @@ app.use('/', express.static(__dirname + '/src'))
 const indexRouter = require('./routers/index')
 const eventsRouter = require('./routers/events')
 const dbRouter = require('./routers/db')
+const couponsRouter = require('./routers/coupons')
+const eventsNewRouter = require('./routers/events_new')
+const recycleMachineSimulatorRouter = require('./routers/recycle_machine_simulator')
+const userRouter = require('./routers/user')
 
 // usage of routers
 app.use(indexRouter)
 app.use(eventsRouter)
 app.use(dbRouter)
+app.use(couponsRouter)
+app.use(eventsNewRouter)
+app.use(recycleMachineSimulatorRouter)
+app.use(userRouter)
 
 // server run
 app.listen(port, () => {
