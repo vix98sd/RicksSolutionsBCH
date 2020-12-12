@@ -13,9 +13,9 @@
                 {{#each event}}
                 <div class="col-12 col-md-4 mt-3">
                     <div class="card text-center">
-                        <img class="card-img-top d-none d-md-block" src="/images/{{this.url}}" alt="">
+                        <img class="card-img-top d-none d-md-block" src="/images/{{this.image_url}}" alt="">
                         <div class="card-body">
-                            <h4 class="card-title">{{this.name}}</h4>
+                            <h4 class="card-title">{{this.title}}</h4>
                             <p class="card-text">{{this.description}}</p>
                         </div>
                         <div class="card-footer text-muted bg-white">
@@ -29,7 +29,7 @@
                            </div>
                         </div>
                         <div class="card-footer text-muted bg-white">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i> {{this.place}}
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> {{this.location}}
                         </div>
                         <div class=" text-muted bg-white px-0 py-0">
                             <button class="btn btn-block btn-primary py-2" type="button">Sign in for event</button>
