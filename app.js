@@ -1,11 +1,13 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 
+// database pool
 const mysql = require('./middleware/database')
 const pool = mysql.getPool()
+
 // pool.getConnection((error, connection) => {
-//     if (error) throw error 
-//     const sql = 'INSERT INTO dummytable (numbers) VALUES(1)'
+//     if (error) throw error
+//     const sql = 'SELECT 1 + 1'
 //     if (error) throw error
 //     connection.query(sql, (error, result) => {
 //         if (error) throw error
@@ -44,8 +46,12 @@ app.use(page5Router)
 app.listen(port, () => {
     process.stdout.write("\u001b[2J\u001b[0;0H");
     const currentdate = new Date();
-    const datetime = 
-    `Started: ${(currentdate.getDay() + 1)}/${(currentdate.getMonth() + 1)}/${currentdate.getFullYear()} @ ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`
+    const datetime =
+        `Started: ${(currentdate.getDay() + 1)}/${(currentdate.getMonth() + 1)}/${currentdate.getFullYear()} @ ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`
     console.log(datetime)
-    console.log('Server running on port ' + port)
+
+    console.log(`Server running on port ${port}`)
+
+    const database = pool.config.connectionConfig.database
+    console.log(`MySql connected { Database: ${database} }`)
 })
