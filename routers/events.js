@@ -56,7 +56,7 @@ router.get('/events', (req, res) => {
 })
 
 router.get('/events/new', (req, res) => {
-    res.render('page5')
+    res.render('event_new')
 })
 
 router.post('/events/new', dateFormatter, (req, res) => {
