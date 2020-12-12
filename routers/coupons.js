@@ -10,14 +10,13 @@ const mysql = require('../middleware/database')
 const pool = mysql.getPool()
 
 router.get('/coupons', (req, res) => {
-    return res.render('coupons')
     pool.getConnection((error, connection) => {
         if (error) throw error
-        const sql = `SELECT 1 + 1`
+        const sql = `SELECT * FROM coupons`
         if (error) throw error
         connection.query(sql, (error, result) => {
             if (error) throw error
-            res.send(result)
+            res.render('coupons', {coupon: result})
         })
     })
 })
