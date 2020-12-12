@@ -4,16 +4,6 @@ const exphbs = require('express-handlebars')
 // database pool
 const mysql = require('./middleware/database')
 
-// pool.getConnection((error, connection) => {
-//     if (error) throw error
-//     const sql = 'SELECT 1 + 1'
-//     if (error) throw error
-//     connection.query(sql, (error, result) => {
-//         if (error) throw error
-//         console.log(result)
-//     })
-// })
-
 // app init
 const app = express()
 const port = process.env.PORT || 3000
@@ -28,7 +18,7 @@ app.use('/', express.static(__dirname + '/src'))
 // routers
 const indexRouter = require('./routers/index')
 const eventsRouter = require('./routers/events')
-const page2Router = require('./routers/page2')
+const dbRouter = require('./routers/db')
 const page3Router = require('./routers/page3')
 const page4Router = require('./routers/page4')
 const page5Router = require('./routers/page5')
@@ -36,7 +26,7 @@ const page5Router = require('./routers/page5')
 // usage of routers
 app.use(indexRouter)
 app.use(eventsRouter)
-app.use(page2Router)
+app.use(dbRouter)
 app.use(page3Router)
 app.use(page4Router)
 app.use(page5Router)

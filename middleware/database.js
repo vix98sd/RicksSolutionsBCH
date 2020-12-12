@@ -20,9 +20,12 @@ module.exports = {
     }
 };
 
-// connection.connect((error) => {
-//     if (error) {
-//         throw Error(error)
-//     }
-//     console.log(`MySql connected { Database: ${condatabase} }`)
+// pool.getConnection((error, connection) => {
+//     if (error) throw error
+//     const sql = `SELECT 1 + 1`
+//     if (error) throw error
+//     connection.query(sql, (error, result) => {
+//         if (error) throw error
+//         console.log(result)
+//     })
 // })
