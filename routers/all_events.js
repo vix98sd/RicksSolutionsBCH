@@ -9,8 +9,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 const mysql = require('../middleware/database')
 const pool = mysql.getPool()
 
-router.get('/coupons', (req, res) => {
-    return res.render('coupons')
+router.get('/all_events', (req, res) => {
     pool.getConnection((error, connection) => {
         if (error) throw error
         const sql = `SELECT 1 + 1`

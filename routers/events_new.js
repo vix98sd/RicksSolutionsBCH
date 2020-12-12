@@ -44,7 +44,7 @@ function dateFormatter(req, res, next) {
 }
 
 router.get('/events/new', (req, res) => {
-    res.render('event_new')
+    res.render('events_new')
 })
 
 router.post('/events/new', dateFormatter, (req, res) => {
