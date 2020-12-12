@@ -3,7 +3,6 @@ const exphbs = require('express-handlebars')
 
 // database pool
 const mysql = require('./middleware/database')
-const pool = mysql.getPool()
 
 // pool.getConnection((error, connection) => {
 //     if (error) throw error
@@ -52,6 +51,6 @@ app.listen(port, () => {
 
     console.log(`Server running on port ${port}`)
 
-    const database = pool.config.connectionConfig.database
+    const database = mysql.getPool().config.connectionConfig.database
     console.log(`MySql connected { Database: ${database} }`)
 })
