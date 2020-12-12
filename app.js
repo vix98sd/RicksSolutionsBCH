@@ -16,7 +16,7 @@ app.set('view engine', 'hbs')
 app.use('/', express.static(__dirname + '/src'))
 
 // routers
-const indexRouter = require('./routers/index')
+const loginRouter = require('./routers/login')
 const eventsRouter = require('./routers/events')
 const dbRouter = require('./routers/db')
 const couponsRouter = require('./routers/coupons')
@@ -25,7 +25,7 @@ const recycleMachineSimulatorRouter = require('./routers/recycle_machine_simulat
 const userRouter = require('./routers/user')
 
 // usage of routers
-app.use(indexRouter)
+app.use(loginRouter)
 app.use(eventsRouter)
 app.use(dbRouter)
 app.use(couponsRouter)

@@ -10,7 +10,8 @@ const mysql = require('../middleware/database')
 const pool = mysql.getPool()
 
 router.get('/user', (req, res) => {
-    return res.render('user')
+    var user = { username: req.query.username, points: req.query.points }
+    return res.render('user', {user})
     pool.getConnection((error, connection) => {
         if (error) throw error
         const sql = `SELECT 1 + 1`

@@ -6,7 +6,7 @@ const router = new express.Router()
 const pool = mysql.getPool()
 
 router.get('/', (req, res) => {
-    res.redirect('/events')
+    res.sendFile(__dirname + '/login/index.html');
 })
 
 module.exports = router

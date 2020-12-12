@@ -10,7 +10,8 @@ const mysql = require('../middleware/database')
 const pool = mysql.getPool()
 
 router.get('/recycle_machine_simulator', (req, res) => {
-    return res.render('recycle_machine_simulator')
+    var user = { username: req.query.username, points: req.query.points }
+    return res.render('recycle_machine_simulator', {user})
     pool.getConnection((error, connection) => {
         if (error) throw error
         const sql = `SELECT 1 + 1`

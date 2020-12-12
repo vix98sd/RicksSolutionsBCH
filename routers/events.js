@@ -12,12 +12,16 @@ const pool = mysql.getPool()
 router.get('/events', (req, res) => {
     pool.getConnection((error, connection) => {
         if (error) throw error
-        const sql = `SELECT * FROM events`
+        var sql = `SELECT points FROM users WHERE username = '${req.query.username}'`
         connection.query(sql, (error, result) => {
             if (error) throw error
-            res.render('events', { event: result, user: 'Korisnik' })
+            var user = { username: req.query.username, points: result[0].points }
+            sql = `SELECT * FROM events`
+            connection.query(sql, (error, result) => {
+                if (error) throw error
+                res.render('events', { event: result, user })
+            })
         })
     })
 })
-
-module.exports = router
+    module.exports = router

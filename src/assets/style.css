@@ -10,7 +10,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 #bod{
-background-image: url(/src/images/bck.png);
+background-image: url('/images/bck.png');
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
