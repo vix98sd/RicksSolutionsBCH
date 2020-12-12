@@ -19,17 +19,11 @@ app.use('/', express.static(__dirname + '/src'))
 const indexRouter = require('./routers/index')
 const eventsRouter = require('./routers/events')
 const dbRouter = require('./routers/db')
-const page3Router = require('./routers/page3')
-const page4Router = require('./routers/page4')
-const page5Router = require('./routers/page5')
 
 // usage of routers
 app.use(indexRouter)
 app.use(eventsRouter)
 app.use(dbRouter)
-app.use(page3Router)
-app.use(page4Router)
-app.use(page5Router)
 
 // server run
 app.listen(port, () => {
