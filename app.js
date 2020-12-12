@@ -23,6 +23,7 @@ const couponsRouter = require('./routers/coupons')
 const eventsNewRouter = require('./routers/events_new')
 const recycleMachineSimulatorRouter = require('./routers/recycle_machine_simulator')
 const userRouter = require('./routers/user')
+const earnPointsRouter = require('./routers/earn_points')
 
 // usage of routers
 app.use(loginRouter)
@@ -32,6 +33,7 @@ app.use(couponsRouter)
 app.use(eventsNewRouter)
 app.use(recycleMachineSimulatorRouter)
 app.use(userRouter)
+app.use(earnPointsRouter)
 
 // server run
 app.listen(port, () => {
