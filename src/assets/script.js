@@ -32,7 +32,7 @@ function insert(username, transaction, event, points) {
 
     date += dateObj.getFullYear() + "."
 
-    var time = dateObj.getMinutes() + " : " + dateObj.getSeconds()
+    var time = dateObj.getHours() + " : " + dateObj.getMinutes()
 
     var data = {
         username,

@@ -35,7 +35,6 @@ router.post('/recycle_machine_simulator', (req, res) => {
             ${req.body.event === null ? null : "'" + req.body.event + "'"}, 
             ${req.body.points}
             )`
-        return console.log(sql)
         connection.query(sql, (error, result) => {
             if (error) throw error
             return res.render('recycle_machine_simulator', { user })
