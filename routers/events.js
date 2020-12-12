@@ -13,10 +13,9 @@ router.get('/events', (req, res) => {
     pool.getConnection((error, connection) => {
         if (error) throw error
         const sql = `SELECT * FROM events`
-        if (error) throw error
         connection.query(sql, (error, result) => {
             if (error) throw error
-            res.render('events', { event: result })
+            res.render('events', { event: result, user: 'Korisnik' })
         })
     })
 })
