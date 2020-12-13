@@ -14,29 +14,6 @@
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="shortcut icon" href="/images/rick-icon.png">
     <style>
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(200, 200, 200, 1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #ff0000;
-            -webkit-box-shadow: inset 0 0 3px rgba(50, 0, 0, 0.7);
-        }
-
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-
         .jumbotron {
             border-radius: 0 !important;
         }
@@ -55,7 +32,7 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-1 mt-lg-0">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/events?username={{user.username}}&points={{user.points}}" onclick="change_active(this);">Events</a>
                     </li>
                     <li class="nav-item">
