@@ -88,4 +88,11 @@ router.post('/user', (req, res) => {
         }
     })
 })
+
+router.get('/users/awards', (req, res) => {
+    var user = { username: req.query.username, points: req.query.points }
+
+    res.render('awards', { user })
+})
+
 module.exports = router
