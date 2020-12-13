@@ -51,8 +51,8 @@ function insert(username, transaction, event, points) {
         contentType: 'application/json'
     })
 
-    setTimeout(function(){ window.location.replace("/events?username=" + username); }, 2000);
-    
+    setTimeout(function () { window.location.replace("/events?username=" + username); }, 2000);
+
 }
 
 function checkCode(code) {
@@ -71,8 +71,8 @@ function checkCode(code) {
         contentType: 'application/json'
     })
 
-    setTimeout(function(){ window.location.replace("/events?username=" + data.query[1]); }, 3000);
-    
+    setTimeout(function () { window.location.replace("/events?username=" + data.query[1]); }, 3000);
+
 }
 
 $("#redeem_code").keypress(() => {
@@ -93,11 +93,11 @@ $("#clearCode").click(() => {
     $("#redeem_code").attr('disabled', false)
 })
 
-function signin(button, event){
-    if(event){
+function signin(button, event) {
+    if (event) {
         $(button).text("Sign-in successful")
         alert("You successfully signed in!");
-    }else{
+    } else {
         $(button).text("Coupon succesfuly taken")
         alert("You successfully took the coupon. It will be sent on your email!");
     }
@@ -106,7 +106,7 @@ function signin(button, event){
     $(button).addClass("btn-info");
 }
 
-function change_active(navbar_element){
+function change_active(navbar_element) {
     $("li").removeClass("active");
     $(navbar_element).addClass("active");
 }
