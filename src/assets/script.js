@@ -51,3 +51,21 @@ function insert(username, transaction, event, points) {
         contentType: 'application/json'
     })
 }
+
+function signin(button, event){
+    if(event){
+        $(button).text("Sign-in successful")
+        alert("You successfully signed in!");
+    }else{
+        $(button).text("Coupon succesfuly taken")
+        alert("You successfully took the coupon. It will be sent on your email!");
+    }
+    $(button).disabled = true;
+    $(button).removeClass("btn-success");
+    $(button).addClass("btn-info");
+}
+
+function change_active(navbar_element){
+    $("li").removeClass("active");
+    $(navbar_element).addClass("active");
+}

@@ -56,18 +56,18 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-1 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/events?username={{user.username}}&points={{user.points}}">Events</a>
+                        <a class="nav-link" href="/events?username={{user.username}}&points={{user.points}}" onclick="change_active(this);">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/earn_points?username={{user.username}}&points={{user.points}}">Earn points</a>
+                        <a class="nav-link" href="/earn_points?username={{user.username}}&points={{user.points}}" onclick="change_active(this);">Earn points</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/coupons?username={{user.username}}&points={{user.points}}">Spend
+                        <a class="nav-link" href="/coupons?username={{user.username}}&points={{user.points}}" onclick="change_active(this);">Spend
                             points</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                            href="/recycle_machine_simulator?username={{user.username}}&points={{user.points}}">RMS</a>
+                            href="/recycle_machine_simulator?username={{user.username}}&points={{user.points}}" onclick="change_active(this);">RMS</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
