@@ -50,4 +50,45 @@ function insert(username, transaction, event, points) {
         dataType: 'json',
         contentType: 'application/json'
     })
+
+    setTimeout(function(){ window.location.replace("/events?username=" + username); }, 2000);
+    
 }
+
+function checkCode(code) {
+    var data = {
+        query: window.location.href.toString().split(window.location.host)[1].split('?')[1],
+        code
+    }
+
+    data.query = data.query.split('=').join(',').split('&').join(',').split(',')
+
+    $.ajax({
+        type: 'post',
+        url: '/user',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+
+    setTimeout(function(){ window.location.replace("/events?username=" + data.query[1]); }, 3000);
+    
+}
+
+$("#redeem_code").keypress(() => {
+    if ($("#redeem_code").val().length === 18) {
+        $("#hidden").attr('hidden', false)
+    }
+    if ($("#redeem_code").val().length === 19) {
+        checkCode($("#redeem_code").val())
+        $("#redeem_code").attr('disabled', 'disabled')
+    }
+    if (($("#redeem_code").val().length !== 19 && $("#redeem_code").val().length !== 0) && (($("#redeem_code").val().length + 1) % 5 === 0 || $("#redeem_code").val().length === 4)) {
+        $('#redeem_code').val($("#redeem_code").val() + '-')
+    }
+});
+
+$("#clearCode").click(() => {
+    $("#redeem_code").val("")
+    $("#redeem_code").attr('disabled', false)
+})

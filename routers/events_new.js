@@ -6,8 +6,7 @@ const router = new express.Router()
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
 
-const mysql = require('../middleware/database')
-const pool = mysql.getPool()
+const cennection = require('../middleware/database')
 
 function dateFormatter(req, res, next) {
     const body = req.body
@@ -45,11 +44,11 @@ function dateFormatter(req, res, next) {
 
 function generateCode() {
     var code
-    var length = 19,
+    var length = 16,
         charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
         code = "";
     for (var i = 1, n = charset.length; i <= length; ++i) {
-        if (i % 4 == 0) code += '-'
+        if (i != 1 && (i - 1) % 4 == 0) code += '-'
         code += charset.charAt(Math.floor(Math.random() * n));
     }
     return code
@@ -57,14 +56,12 @@ function generateCode() {
 
 router.get('/events/new', (req, res) => {
     var user = { username: req.query.username, points: req.query.points }
-    res.render('events_new', {user})
+    res.render('events_new', { user })
 })
 
 router.post('/events/new', dateFormatter, (req, res) => {
     const body = req.body
-    pool.getConnection((error, connection) => {
-        if (error) throw error
-        var sql = `INSERT INTO events (title, image_url, points, date, time, location, description, visitors) VALUES (
+    var sql = `INSERT INTO events (title, image_url, points, date, time, location, description, visitors) VALUES (
             '${body.title}',
             '${body.image_url}',
             ${body.points},
@@ -74,24 +71,23 @@ router.post('/events/new', dateFormatter, (req, res) => {
             '${body.description}',
             ${body.visitors}
         )`
+    if (error) throw error
+    connection.query(sql, (error, result) => {
         if (error) throw error
+        sql = `INSERT INTO redeem_codes (event, code, points, used) VALUES `
+        var data = []
+        for (let i = 0; i < body.visitors; i++) {
+            data[i] = generateCode()
+            sql += `('${body.title}', '${data[i]}', '${body.points}', 'FALSE')`
+            if (i != body.visitors - 1) {
+                sql += `, `
+            }
+        }
+        sql += `;`
         connection.query(sql, (error, result) => {
             if (error) throw error
-            sql = `INSERT INTO redeem_codes (event, code, points) VALUES `
-            var data = []
-            for (let i = 0; i < body.visitors; i++) {
-                data[i] = generateCode()
-                sql += `('${body.title}', '${data[i]}', '${body.points}')`
-                if (i != body.visitors - 1) {
-                    sql += `, `
-                }
-            }
-            sql += `;`
-            connection.query(sql, (error, result) => {
-                if (error) throw error
-                var user = { username: req.query.username, points: req.query.points }
-                res.render('event_created', { event: body.title, data, points: body.points, user })
-            })
+            var user = { username: req.query.username, points: req.query.points }
+            res.render('event_created', { event: body.title, data, points: body.points, user })
         })
     })
 })
