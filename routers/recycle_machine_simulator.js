@@ -28,8 +28,7 @@ router.post('/recycle_machine_simulator', (req, res) => {
         sql = `UPDATE users SET points = points + ${req.body.points} WHERE username = '${req.body.username}'`
         connection.query(sql, (error, result) => {
             if (error) throw error
-            console.log(result)
-            res.render('recycle_machine_simulator', { user })
+            res.render('events', { user })
         })
     })
 })

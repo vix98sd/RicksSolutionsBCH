@@ -17,11 +17,10 @@ router.get('/coupons', (req, res) => {
     })
 })
 
-router.post('/recycle_machine_simulator', (req, res) => {
+router.post('/coupons', (req, res) => {
     var user = { username: req.query.username, points: req.query.points }
-    pool.getConnection((error, connection) => {
-        if (error) throw error
-        const sql = `INSERT INTO points_log (username, transaction, date, time, event, points) VALUES (
+
+    var sql = `INSERT INTO points_log (username, transaction, date, time, event, points) VALUES (
             '${req.body.username}', 
             '${req.body.transaction}', 
             '${req.body.date}', 
@@ -29,11 +28,15 @@ router.post('/recycle_machine_simulator', (req, res) => {
             ${req.body.event === null ? null : "'" + req.body.event + "'"}, 
             ${req.body.points}
             )`
+    connection.query(sql, (error, result) => {
+        if (error) throw error
+        sql = `UPDATE users SET points = points - ${req.body.points} WHERE username = '${req.body.username}'`
         connection.query(sql, (error, result) => {
             if (error) throw error
-            return res.render('recycle_machine_simulator', { user })
+            res.redirect(`/events?username=${req.body.username}`)
         })
     })
 })
+
 
 module.exports = router
