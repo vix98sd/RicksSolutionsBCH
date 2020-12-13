@@ -38,13 +38,13 @@
                 <h3>Your points</h3>
                 <h4 class="display-4"><i class="fa fa-star" aria-hidden="true"></i>{{user.points}}</h4>
                 <p class="lead">
-                    <a class="btn btn-info btn-sm border-white points-button " href="Jumbo action link"
+                    <a class="btn btn-info btn-sm border-white points-button " href="/points_log?username={{user.username}}&points={{user.points}}"
                         role="button">View</a>
                 </p>
             </div>
             <div class="jumbotron bg-warning pt-3 pb-2 text-white text-center mt-3 mb-0">
                 <h3>Events</h3>
-                <ph4 class="display-4"><i class="fa fa-users" aria-hidden="true"></i> 3</h4>
+                <ph4 class="display-4"><i class="fa fa-users" aria-hidden="true"></i> {{resPoints}}</h4>
                     <p class="lead">
                         <a class="btn btn-warning btn-sm border-white text-white mt-2"
                             href="/events/new?username={{user.username}}&points={{user.points}}" role="button">Create

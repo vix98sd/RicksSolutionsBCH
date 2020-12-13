@@ -20,7 +20,7 @@
           <i class="fa fa-money" aria-hidden="true"></i> {{this.points}}
         </div>
         <div class=" text-muted bg-white px-0 py-0">
-          <button class="btn btn-block btn-success py-2" type="button" onclick="insert('{{../user.username}}', 'coupon', null, {{this.points}}); signin(this, false)">Get Coupon</button>
+          <button class="btn btn-block btn-success py-2" type="button" onclick="insert('{{../user.username}}', 'coupon', '{{this.event}}', {{this.points}}); signin(this, false)">Get Coupon</button>
         </div>
       </div>
     </div>

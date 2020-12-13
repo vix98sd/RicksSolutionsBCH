@@ -6,7 +6,7 @@ const router = new express.Router()
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
 
-const cennection = require('../middleware/database')
+const connection = require('../middleware/database')
 
 function dateFormatter(req, res, next) {
     const body = req.body
@@ -61,7 +61,10 @@ router.get('/events/new', (req, res) => {
 
 router.post('/events/new', dateFormatter, (req, res) => {
     const body = req.body
-    var sql = `INSERT INTO events (title, image_url, points, date, time, location, description, visitors) VALUES (
+    var sql = `UPDATE users SET events_created = events_created + 1 WHERE username = '${req.query.username}'`
+    connection.query(sql, (error, result) => {
+        if (error) throw error
+        var sql = `INSERT INTO events (title, image_url, points, date, time, location, description, visitors) VALUES (
             '${body.title}',
             '${body.image_url}',
             ${body.points},
@@ -71,23 +74,24 @@ router.post('/events/new', dateFormatter, (req, res) => {
             '${body.description}',
             ${body.visitors}
         )`
-    if (error) throw error
-    connection.query(sql, (error, result) => {
         if (error) throw error
-        sql = `INSERT INTO redeem_codes (event, code, points, used) VALUES `
-        var data = []
-        for (let i = 0; i < body.visitors; i++) {
-            data[i] = generateCode()
-            sql += `('${body.title}', '${data[i]}', '${body.points}', 'FALSE')`
-            if (i != body.visitors - 1) {
-                sql += `, `
-            }
-        }
-        sql += `;`
         connection.query(sql, (error, result) => {
             if (error) throw error
-            var user = { username: req.query.username, points: req.query.points }
-            res.render('event_created', { event: body.title, data, points: body.points, user })
+            sql = `INSERT INTO redeem_codes (event, code, points, used) VALUES `
+            var data = []
+            for (let i = 0; i < body.visitors; i++) {
+                data[i] = generateCode()
+                sql += `('${body.title}', '${data[i]}', '${body.points}', 'FALSE')`
+                if (i != body.visitors - 1) {
+                    sql += `, `
+                }
+            }
+            sql += `;`
+            connection.query(sql, (error, result) => {
+                if (error) throw error
+                var user = { username: req.query.username, points: req.query.points }
+                res.render('event_created', { event: body.title, data, points: body.points, user })
+            })
         })
     })
 })

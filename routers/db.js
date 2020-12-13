@@ -6,7 +6,6 @@ const router = new express.Router()
 
 router.get('/db', (req, res) => {
     const sql = `SHOW TABLES`
-    if (error) throw error
     connection.query(sql, (error, result) => {
         if (error) throw error
         var html = "Select table below:<br>"
@@ -20,13 +19,10 @@ router.get('/db', (req, res) => {
 
 
 router.get('/db/:name', (req, res) => {
-    pool.getConnection((error, connection) => {
-        if (error) throw error
-        const sql = `DESCRIBE ${req.params.name}`
-        connection.query(sql, (error, result) => {
-            if (error) return res.redirect('/db')
-            res.send(`<pre>${JSON.stringify(result, null, "  ")}</pre>`)
-        })
+    const sql = `DESCRIBE ${req.params.name}`
+    connection.query(sql, (error, result) => {
+        if (error) return res.redirect('/db')
+        res.send(`<pre>${JSON.stringify(result, null, "  ")}</pre>`)
     })
 })
 

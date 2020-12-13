@@ -10,7 +10,8 @@ const connection = require('../middleware/database')
 
 router.get('/recycle_machine_simulator', (req, res) => {
     var user = { username: req.query.username, points: req.query.points }
-    return res.render('recycle_machine_simulator', { user })
+
+    res.render('recycle_machine_simulator', { user })
 })
 
 router.post('/recycle_machine_simulator', (req, res) => {
@@ -20,16 +21,14 @@ router.post('/recycle_machine_simulator', (req, res) => {
             '${req.body.transaction}', 
             '${req.body.date}', 
             '${req.body.time}', 
-            ${req.body.event === null ? null : "'" + req.body.event + "'"}, 
+            '${req.body.event}', 
             ${req.body.points}
             )`
     connection.query(sql, (error, result) => {
         if (error) throw error
-        console.log(result)
         sql = `UPDATE users SET points = points + ${req.body.points} WHERE username = '${req.body.username}'`
         connection.query(sql, (error, result) => {
             if (error) throw error
-            console.log(result)
             res.render('events', { user })
         })
     })
