@@ -44,7 +44,4 @@ app.listen(port, () => {
     console.log(datetime)
 
     console.log(`Server running on port ${port}`)
-
-    const database = mysql.getPool().config.connectionConfig.database
-    console.log(`MySql connected { Database: ${database} }`)
 })

@@ -6,19 +6,14 @@ const router = new express.Router()
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
 
-const mysql = require('../middleware/database')
-const pool = mysql.getPool()
+const connection = require('../middleware/database')
 
 router.get('/coupons', (req, res) => {
-    pool.getConnection((error, connection) => {
+    const sql = `SELECT * FROM coupons`
+    connection.query(sql, (error, result) => {
         if (error) throw error
-        const sql = `SELECT * FROM coupons`
-        if (error) throw error
-        connection.query(sql, (error, result) => {
-            if (error) throw error
-            var user = { username: req.query.username, points: req.query.points }
-            res.render('coupons', {coupon: result, user})
-        })
+        var user = { username: req.query.username, points: req.query.points }
+        res.render('coupons', { coupon: result, user })
     })
 })
 

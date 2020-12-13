@@ -1,12 +1,13 @@
 const express = require('express')
 
-const mysql = require('../middleware/database')
-
 const router = new express.Router()
-const pool = mysql.getPool()
 
 router.get('/', (req, res) => {
     res.sendFile(__dirname + '/login/index.html');
+})
+
+router.get('/login', (req, res) => {
+    res.render('events')
 })
 
 module.exports = router
