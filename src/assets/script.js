@@ -43,6 +43,7 @@ function insert(username, transaction, event, points) {
         points
     }
 
+    console.log(data)
     $.ajax({
         type: 'post',
         url: window.location.href.toString().split(window.location.host)[1].split('?')[0],
